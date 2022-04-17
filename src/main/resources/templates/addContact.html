@@ -17,35 +17,36 @@
             <div class="contact100-pic js-tilt" data-tilt>
                 <img src="https://i.imgur.com/VRFiMzM.png" alt="IMG">
             </div>
-            <form class="contact100-form validate-form" method="post" action="/saveContact" accept-charset="UTF-16">
+            <form class="contact100-form validate-form" method="post" action="/saveData">
                     <span class="contact100-form-title">
                         Add Contacts to phonebook
                     </span>
                 <div class="wrap-input100 validate-input">
                     <label for="name" class="form-label">Contact person name</label>
-                    <input class="input100" type="text" name="name" autocomplete="off">
+                    <input class="input100" type="text" name="name" autocomplete="off" required minlength="3" maxlength="20">
 
                 </div>
                 <div class="wrap-input100 validate-input">
                     <label for="name" class="form-label">Phone/Mobile number</label>
-                    <input class="input100" type="text" name="number" autocomplete="off">
+                    <input class="input100" type="text" name="number" autocomplete="off" required minlength="3" maxlength="20">
                 </div>
+                <label th:text="${error_phone}"></label>
                 <div class="wrap-input100 validate-input">
                     <label for="email" class="form-label">E-mail address</label>
-                    <input class="input100" type="text" name="email" autocomplete="off">
+                    <input class="input100" type="text" name="email" autocomplete="off" >
                 </div>
                 <div class="wrap-input100 validate-input">
                     <label for="category" class="form-label">category</label>
-                    <select class="input100" name="category">
-                        <option value="police">police</option>
-                        <option value="ambulance">Emergency</option>
+                    <select class="input100" name="category" required>
+                        <option value="Emergency">Emergency</option>
                         <option value="goverment_offices">Goverment Office</option>
                         <option value="Schoo/college">School/college</option>
+                        <option value="Schoo/college">Person</option>
 
                     </select>
                 </div>
                 <div class="container-contact100-form-btn">
-                    <button class="contact100-form-btn">
+                    <button class="contact100-form-btn" type="submit">
                         Add to contact
                     </button>
                 </div>

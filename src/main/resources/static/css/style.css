@@ -380,9 +380,50 @@ input.input100[name="pnumber"] {
 label{
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-weight: bold;
+    font-weight: bold !important;
     font-size: 11px;
 }
 .container-contact100-form-btn{
     justify-content: left !important;
+}
+
+/*datatable*/
+.viewContact{
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 13px;
+}
+span{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 11px;
+}
+#example_info{
+    text-transform: uppercase !important;
+    letter-spacing: 1px;
+    font-weight: bold !important;
+    font-size: 11px;
+}
+.sorting,.model-title{
+    text-transform: uppercase !important;
+    letter-spacing: 1px;
+    font-weight: bold !important;
+    font-size: 11px;
+}
+td{
+    font-weight: bold !important;
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+.odd{
+
+    letter-spacing: 1px;
+    font-weight: bold !important;
+    font-size: 11px;
+}
+table.dataTable thead .sorting:after{
+    color: #c80000 !important;
 }
