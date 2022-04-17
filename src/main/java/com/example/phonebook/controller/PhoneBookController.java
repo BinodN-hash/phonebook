@@ -40,7 +40,7 @@ public class PhoneBookController {
             contactRepo.save(contact);
 
         }
-        return "redirect:/viewContact";
+        return "redirect:/viewContacts";
 
     }
 
@@ -50,6 +50,14 @@ public class PhoneBookController {
         model.addAttribute("contacts",contactRepo.findAll());
 
         return "viewContact";
+
+    }
+
+    @DeleteMapping("/deleteContact/{id}")
+    public String deleteContact(@PathVariable Long id){
+        contactRepo.deleteById(id);
+
+        return "redirect:/viewContacts";
 
     }
 
