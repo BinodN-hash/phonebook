@@ -427,3 +427,18 @@ td{
 table.dataTable thead .sorting:after{
     color: #c80000 !important;
 }
+
+/*modal form */
+.modal-title{
+    text-transform: uppercase !important;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 1px;
+
+}
+.btn-primary{
+    text-transform: uppercase !important;
+    font-weight: bold;
+    font-size: 11px;
+    letter-spacing: 1px;
+}

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.persistence.PostUpdate;
 import java.util.List;
 import java.util.Map;
 
@@ -18,17 +20,21 @@ public class PhoneBookController {
     @Autowired
     ContactRepo contactRepo;
 
-    @GetMapping("/createContact")
+    /*add contact view page*/
+    @GetMapping("/create/contact")
     public String view(){
         return "addContact";
     }
 
-    @PostMapping("/saveData")
-    public String saveContact(@ModelAttribute Contact contact, Model model){
+    /*create contacts*/
+    @PostMapping("/save/contact")
+    public String saveContact(@ModelAttribute Contact contact, Model model, RedirectAttributes redirectAttributes){
 
         if(contactRepo.existsByNumber(contact.getNumber())){
-           throw new RuntimeException("Phone number already Exist.");
-//           model.addAttribute("error_phone", "Phone number already exist");
+//           throw new RuntimeException("Phone number already Exist.");
+            redirectAttributes.addFlashAttribute("error", "Phone already exist");
+            return "redirect:/create/contact";
+
 
 
         }if (contactRepo.existsByEmail(contact.getEmail())){
@@ -37,14 +43,15 @@ public class PhoneBookController {
 
         }
         else{
-            contactRepo.save(contact);
+            contactRepo.saveAndFlush(contact);
 
         }
-        return "redirect:/viewContacts";
+        return "redirect:/create/contact";
 
     }
 
-    @GetMapping("/viewContacts")
+    /*View Contacts list*/
+    @GetMapping("/view/contacts")
     public String viewContact(Model model){
 
         model.addAttribute("contacts",contactRepo.findAll());
@@ -53,13 +60,31 @@ public class PhoneBookController {
 
     }
 
-    @DeleteMapping("/deleteContact/{id}")
+   @GetMapping("/delete/contact/{id}")
     public String deleteContact(@PathVariable Long id){
-        contactRepo.deleteById(id);
 
+       contactRepo.deleteById(id);
         return "redirect:/viewContacts";
+   }
 
+    @GetMapping("/edit/contact/{id}")
+    public String editContact(@PathVariable Long id, Model model){
+        Contact contact = contactRepo.findById(id).get();
+        System.out.println(contact.getId());
+        model.addAttribute("contact", contact);
+        return "editContact";
     }
 
+    @PostMapping("/update/contact")
+    public String updateContact(@ModelAttribute Contact contact){
+
+        System.out.println("id =" + contact.getId() );
+        Contact existContact = contactRepo.findById(contact.getId()).get();
+        existContact.setName(contact.getName());
+        existContact.setNumber(contact.getNumber());
+        existContact.setEmail(contact.getEmail());
+        contactRepo.save(existContact);
+        return "redirect:/view/contacts";
+    }
 
 }

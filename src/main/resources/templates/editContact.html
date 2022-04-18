@@ -1,6 +1,6 @@
 <!doctype html>
 <!--suppress ALL -->
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,9 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PhoneBook</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../plugins/toster/assets/toast.style.min.css">
-    <link rel="stylesheet" href="../plugins/toster/toast.style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 <div class="bg-contact100">
@@ -19,47 +17,44 @@
             <div class="contact100-pic js-tilt" data-tilt>
                 <img src="https://i.imgur.com/VRFiMzM.png" alt="IMG">
             </div>
-            <form class="contact100-form validate-form" method="post" action="/save/contact">
+            <form class="contact100-form validate-form" th:object="${contact}" method="post" action="/update/contact">
+                    <input type="hidden" th:field="*{id}">
                     <span class="contact100-form-title">
-                        Add Contacts to phonebook
+                        Edit Contact details
                     </span>
-
                 <div class="wrap-input100 validate-input">
                     <label for="name" class="form-label">Contact name</label>
-                    <input class="input100" type="text" name="name" autocomplete="off" required minlength="3" maxlength="20">
+                    <input class="input100" type="text" name="name" th:field="*{name}" autocomplete="off" required minlength="3" maxlength="20">
 
                 </div>
                 <div class="wrap-input100 validate-input">
                     <label for="name" class="form-label">Phone/Mobile number</label>
-                    <input class="input100" type="text" name="number" autocomplete="off" required minlength="3" maxlength="20">
+                    <input class="input100" type="text" name="number" th:field="*{number}" autocomplete="off">
                 </div>
-                <label th:text="${error_phone}"></label>
                 <div class="wrap-input100 validate-input">
                     <label for="email" class="form-label">E-mail address</label>
-                    <input class="input100" type="text" name="email" autocomplete="off" >
+                    <input class="input100" type="text" name="email" th:field="*{email}" autocomplete="off" >
                 </div>
-                <div class="wrap-input100 validate-input">
-                    <label for="category" class="form-label">category</label>
-                    <select class="input100" name="category" required>
-                        <option value="Emergency">Emergency</option>
-                        <option value="goverment_offices">Goverment Office</option>
-                        <option value="Schoo/college">School/college</option>
-                        <option value="Schoo/college">Person</option>
 
-                    </select>
-                </div>
+<!--                <div class="wrap-input100 validate-input">-->
+<!--                    <label for="category" class="form-label">category</label>-->
+<!--                    <select class="input100" name="category" required>-->
+<!--                        <option value="Emergency">Emergency</option>-->
+<!--                        <option value="goverment_offices">Goverment Office</option>-->
+<!--                        <option value="Schoo/college">School/college</option>-->
+<!--                        <option value="Schoo/college">Person</option>-->
+
+<!--                    </select>-->
+<!--                </div>-->
                 <div class="container-contact100-form-btn">
                     <button class="contact100-form-btn" type="submit">
-                        Add to contact
+                       update contact
                     </button>
                 </div>
             </form>
         </div>
-        <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<scritpt src="../plugins/toster/toast.script.js"></scritpt>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
 </body>
 </html>
