@@ -1,7 +1,7 @@
 package com.example.phonebook.repository;
 
 
-import com.example.phonebook.model.Contact;
+import com.example.phonebook.repository.model.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

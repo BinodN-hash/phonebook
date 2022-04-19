@@ -442,3 +442,10 @@ table.dataTable thead .sorting:after{
     font-size: 11px;
     letter-spacing: 1px;
 }
+
+.toast-body{
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}

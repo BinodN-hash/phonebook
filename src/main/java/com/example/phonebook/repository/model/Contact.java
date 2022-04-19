@@ -1,4 +1,4 @@
-package com.example.phonebook.model;
+package com.example.phonebook.repository.model;
 
 import lombok.*;
 

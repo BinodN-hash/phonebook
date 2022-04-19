@@ -9,10 +9,25 @@
     <title>PhoneBook</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../plugins/toster/assets/toast.style.min.css">
-    <link rel="stylesheet" href="../plugins/toster/toast.style.css">
+    <style>
+        .fade {
+            transition: opacity 0.5s linear !important;
+        }
+    </style>
 </head>
 <body>
+<span th:if="${perror}">
+    <div id="errortip" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-animation="true" data-autohide="true" data-delay="5000" style="position: absolute; bottom: 0; right: 0;background-color: red;color:#ffffff;width: 300px;">
+        <div class="toast-body" th:text="${perror}" style="text-transform: uppercase;font-size: 11px;"></div>
+    </div>
+</span>
+<span th:if="${success}">
+    <div id="errortip" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-animation="true" data-autohide="true" data-delay="5000" style="position: absolute; bottom: 50px; right: 0;background-color: green;color:#ffffff;width: 300px;">
+        <div class="toast-body" th:text="${success}" style="text-transform: uppercase;font-size: 11px;"></div>
+    </div>
+</span>
+
+
 <div class="bg-contact100">
     <div class="container-contact100 ui-widget-shadow">
         <div class="wrap-contact100">
@@ -23,7 +38,6 @@
                     <span class="contact100-form-title">
                         Add Contacts to phonebook
                     </span>
-
                 <div class="wrap-input100 validate-input">
                     <label for="name" class="form-label">Contact name</label>
                     <input class="input100" type="text" name="name" autocomplete="off" required minlength="3" maxlength="20">
@@ -33,11 +47,12 @@
                     <label for="name" class="form-label">Phone/Mobile number</label>
                     <input class="input100" type="text" name="number" autocomplete="off" required minlength="3" maxlength="20">
                 </div>
-                <label th:text="${error_phone}"></label>
+<!--                <span style="color:red" th:text="${perror}" th:if="${perror}"></span>-->
                 <div class="wrap-input100 validate-input">
                     <label for="email" class="form-label">E-mail address</label>
                     <input class="input100" type="text" name="email" autocomplete="off" >
                 </div>
+
                 <div class="wrap-input100 validate-input">
                     <label for="category" class="form-label">category</label>
                     <select class="input100" name="category" required>
@@ -49,17 +64,21 @@
                     </select>
                 </div>
                 <div class="container-contact100-form-btn">
-                    <button class="contact100-form-btn" type="submit">
+                    <button class="contact100-form-btn" type="submit" onclick="addToast()">
                         Add to contact
                     </button>
                 </div>
             </form>
         </div>
-        <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<scritpt src="../plugins/toster/toast.script.js"></scritpt>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<script>
+    setTimeout(() => {
+        $("#errortip").toast('show')
+    }, 0)
+</script>
 </body>
 </html>

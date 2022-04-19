@@ -1,18 +1,12 @@
 package com.example.phonebook.controller;
 
-import com.example.phonebook.model.Contact;
+import com.example.phonebook.repository.model.Contact;
 import com.example.phonebook.repository.ContactRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.persistence.PostUpdate;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class PhoneBookController {
@@ -32,20 +26,22 @@ public class PhoneBookController {
 
         if(contactRepo.existsByNumber(contact.getNumber())){
 //           throw new RuntimeException("Phone number already Exist.");
-            redirectAttributes.addFlashAttribute("error", "Phone already exist");
+            redirectAttributes.addFlashAttribute("perror", "Phone already added to phonebook");
             return "redirect:/create/contact";
 
 
 
         }if (contactRepo.existsByEmail(contact.getEmail())){
-            throw new RuntimeException("Email already exist");
-//            model.addAttribute("error_email","Email address already exist");
+            redirectAttributes.addFlashAttribute("eerror", "E-mail already added to phonebook");
+            return "redirect:/create/contact";
+
 
         }
         else{
             contactRepo.saveAndFlush(contact);
 
         }
+        redirectAttributes.addFlashAttribute("success","Contact successfully created");
         return "redirect:/create/contact";
 
     }
