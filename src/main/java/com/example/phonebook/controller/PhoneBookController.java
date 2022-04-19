@@ -1,6 +1,6 @@
 package com.example.phonebook.controller;
 
-import com.example.phonebook.repository.model.Contact;
+import com.example.phonebook.model.Contact;
 import com.example.phonebook.repository.ContactRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
