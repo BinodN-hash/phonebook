@@ -29,9 +29,9 @@ public class AuthController {
 
         String userEmail = user.getEmail();
         User userData = usersRepo.findByEmail(user.getEmail());
-        model.addAttribute("user", user);
         if(user.getPassword().equals(userData.getPassword())){
 
+            model.addAttribute("user", user);
             return "redirect:/create/contact";
 
         }

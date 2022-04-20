@@ -1,6 +1,6 @@
 <!doctype html>
 <!--suppress ALL -->
-<html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -37,7 +37,7 @@
                     <th>contact number</th>
                     <th>category</th>
                     <th>email</th>
-                    <th  style="text-transform: uppercase !important;letter-spacing: 1px;font-weight: bold !important;font-size: 11px;">Action</th>
+                    <th style="text-transform: uppercase !important;letter-spacing: 1px;font-weight: bold !important;font-size: 11px;">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,12 +48,14 @@
                         <td th:text="${contact.category}"></td>
                         <td th:text="${contact.email}"></td>
                         <td>
-                            <a th:href="@{'/edit/contact/' + ${contact.id}}" type="button" class="btn btn-primary btn-sm dt-edit">
-                                <span data-feather="edit" style="font-size: 11px !important;"></span>
-                            </a>
-                            <a th:href="@{'/delete/contact/' + ${contact.id}}" class="btn btn-danger btn-sm dt-delete">
-                                <span data-feather="trash-2"></span>
-                            </a>
+                            <div sec:authorize="isAuthenticated()">
+                                <a th:href="@{'/edit/contact/' + ${contact.id}}" type="button" class="btn btn-primary btn-sm dt-edit">
+                                    <span data-feather="edit" style="font-size: 11px !important;"></span>
+                                </a>
+                                <a th:href="@{'/delete/contact/' + ${contact.id}}" class="btn btn-danger btn-sm dt-delete">
+                                    <span data-feather="trash-2"></span>
+                                </a>
+                            </div>
 
                         </td>
 <!--                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
@@ -108,7 +110,6 @@
 <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.colVis.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
-<!--<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>-->
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.bootstrap5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
@@ -116,7 +117,6 @@
 <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/colreorder/1.5.5/js/dataTables.colReorder.min.js"></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 <script src="../js/custom.js"></script>

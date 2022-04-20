@@ -57,9 +57,10 @@ public class PhoneBookController {
     }
 
    @GetMapping("/delete/contact/{id}")
-    public String deleteContact(@PathVariable Long id){
+    public String deleteContact(@PathVariable Long id, RedirectAttributes attributes){
 
        contactRepo.deleteById(id);
+       attributes.addFlashAttribute("success", "Contact Delete successfully." );
         return "redirect:/view/contacts";
    }
 
