@@ -1,6 +1,6 @@
 <!doctype html>
 <!--suppress ALL -->
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -17,18 +17,18 @@
             <div class="contact100-pic js-tilt" data-tilt>
                 <img src="https://i.imgur.com/VRFiMzM.png" alt="IMG">
             </div>
-            <form class="contact100-form validate-form" action="/login" method="post">
+            <form class="contact100-form validate-form" th:action="@{/login}" th:object="${user}" method="post">
                     <span class="contact100-form-title">
                         Login to phonebook
                     </span>
                 <div class="wrap-input100 validate-input">
                     <label for="name" class="form-label">email</label>
-                    <input class="input100" type="text" name="email" autocomplete="off" required>
+                    <input class="input100" type="text" the:field="*{email}" autocomplete="off" required>
 
                 </div>
                 <div class="wrap-input100 validate-input">
                     <label for="name" class="form-label">password</label>
-                    <input class="input100" type="password" name="password" autocomplete="off" required minlength="8">
+                    <input class="input100" type="password" th:field="*{password}" autocomplete="off" required minlength="8">
                 </div>
                 <div class="container-contact100-form-btn">
                     <button class="contact100-form-btn" type="submit">

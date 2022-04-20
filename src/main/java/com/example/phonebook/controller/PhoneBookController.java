@@ -60,7 +60,7 @@ public class PhoneBookController {
     public String deleteContact(@PathVariable Long id){
 
        contactRepo.deleteById(id);
-        return "redirect:/viewContacts";
+        return "redirect:/view/contacts";
    }
 
     @GetMapping("/edit/contact/{id}")

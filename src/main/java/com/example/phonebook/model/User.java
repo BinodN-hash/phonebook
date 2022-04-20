@@ -1,21 +1,22 @@
 package com.example.phonebook.model;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Data
 @Table(name = "users")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class User {
+
     @Id
     private Long id;
     private String email;
-    private String password;
 
     public Long getId() {
         return id;
@@ -40,6 +41,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    private String password;
 
 
 }
