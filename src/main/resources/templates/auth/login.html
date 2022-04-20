@@ -11,24 +11,33 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+<span th:if="${error}">
+    <div  id="error" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000" style="position: absolute; bottom: 50px;right: 0; background-color: red;color:#ffffff;width: 250px;">
+      <div class="d-flex">
+          <span data-feather="alert-circle" style="margin-top: 15px;margin-left: 20px;"></span>
+        <div class="toast-body" th:text="${error}"></div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+</span>
 <div class="bg-contact100">
     <div class="container-contact100 ui-widget-shadow">
         <div class="wrap-contact100">
             <div class="contact100-pic js-tilt" data-tilt>
                 <img src="https://i.imgur.com/VRFiMzM.png" alt="IMG">
             </div>
-            <form class="contact100-form validate-form" th:action="@{/login}" th:object="${user}" method="post">
+            <form class="contact100-form validate-form" action="/login" method="post">
                     <span class="contact100-form-title">
                         Login to phonebook
                     </span>
                 <div class="wrap-input100 validate-input">
                     <label for="name" class="form-label">email</label>
-                    <input class="input100" type="text" the:field="*{email}" autocomplete="off" required>
+                    <input class="input100" type="text" name="email" autocomplete="off" required>
 
                 </div>
                 <div class="wrap-input100 validate-input">
                     <label for="name" class="form-label">password</label>
-                    <input class="input100" type="password" th:field="*{password}" autocomplete="off" required minlength="8">
+                    <input class="input100" type="password" name="password" autocomplete="off" required minlength="8">
                 </div>
                 <div class="container-contact100-form-btn">
                     <button class="contact100-form-btn" type="submit">
@@ -39,6 +48,17 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+<script>
+    setTimeout(() => {
+        $("#error").toast('show')
+    }, 0)
+</script>
 </body>
 </html>

@@ -2,12 +2,12 @@ package com.example.phonebook.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Data
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,7 +16,12 @@ public class User {
 
     @Id
     private Long id;
+    @NotEmpty
+    @Email
     private String email;
+    @NotEmpty
+    @Min(value = 8)
+    private String password;
 
     public Long getId() {
         return id;
@@ -42,7 +47,7 @@ public class User {
         this.password = password;
     }
 
-    private String password;
+
 
 
 }

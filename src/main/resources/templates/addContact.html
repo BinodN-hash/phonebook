@@ -17,18 +17,30 @@
 </head>
 <body>
 <span th:if="${perror}">
-    <div id="errortip" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-animation="true" data-autohide="true" data-delay="5000" style="position: absolute; bottom: 50px; right: 0;background-color: red;color:#ffffff;width: 300px;">
-        <div class="toast-body" th:text="${perror}" style="text-transform: uppercase;font-size: 11px;"></div>
+       <div  id="errortip" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000" style="position: absolute; bottom: 50px;right: 0; background-color: red;color:#ffffff;width: 360px;">
+      <div class="d-flex">
+          <span data-feather="alert-circle" style="margin-top: 15px;margin-left: 20px;"></span>
+        <div class="toast-body" th:text="${perror}"></div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
     </div>
 </span>
 <span th:if="${success}">
-    <div id="errortip" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-animation="true" data-autohide="true" data-delay="5000" style="position: absolute; bottom: 50px; right: 0;background-color: green;color:#ffffff;width: 300px;">
-        <div class="toast-body" th:text="${success}" style="text-transform: uppercase;font-size: 11px;"></div>
+       <div  id="errortip" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000" style="position: absolute; bottom: 50px;right: 0; background-color: green;color:#ffffff;width: 300px;">
+      <div class="d-flex">
+          <span data-feather="check-circle" style="margin-top: 15px;margin-left: 20px;"></span>
+        <div class="toast-body" th:text="${success}"></div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
     </div>
 </span>
 <span th:if="${eerror}">
-    <div id="errortip" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-animation="true" data-autohide="true" data-delay="5000" style="position: absolute; bottom: 50px; right: 0;background-color: red;color:#ffffff;width: 300px;">
-        <div class="toast-body" th:text="${eerror}" style="text-transform: uppercase;font-size: 11px;"></div>
+    <div  id="errortip" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000" style="position: absolute; bottom: 50px;right: 0; background-color: red;color:#ffffff;width: 360px;">
+      <div class="d-flex">
+          <span data-feather="alert-circle" style="margin-top: 15px;margin-left: 20px;"></span>
+        <div class="toast-body" th:text="${eerror}"></div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
     </div>
 </span>
 
@@ -79,6 +91,10 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
 <script>
     setTimeout(() => {
         $("#errortip").toast('show')
