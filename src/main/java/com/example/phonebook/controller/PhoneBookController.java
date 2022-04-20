@@ -38,7 +38,7 @@ public class PhoneBookController {
 
         }
         else{
-            contactRepo.saveAndFlush(contact);
+            contactRepo.save(contact);
 
         }
         redirectAttributes.addFlashAttribute("success","Contact successfully created");
@@ -72,14 +72,16 @@ public class PhoneBookController {
     }
 
     @PostMapping("/update/contact")
-    public String updateContact(@ModelAttribute Contact contact){
+    public String updateContact(@ModelAttribute Contact contact, RedirectAttributes attributes){
 
         System.out.println("id =" + contact.getId() );
         Contact existContact = contactRepo.findById(contact.getId()).get();
         existContact.setName(contact.getName());
         existContact.setNumber(contact.getNumber());
         existContact.setEmail(contact.getEmail());
+
         contactRepo.save(existContact);
+        attributes.addFlashAttribute("success", "Contact successfully updated");
         return "redirect:/view/contacts";
     }
 
